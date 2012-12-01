@@ -102,7 +102,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteText ="Delete Character";
-		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
 	}
@@ -142,6 +142,17 @@ window.addEventListener("DOMContentLoaded", function(){
 		//so we can use that value when we save the data we edited.
 		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
+	}
+	
+	function deleteItem(){
+		var ask = confirm("Are you sure you want to banish this character?"); 
+		if(ask){
+			localStorage.removeItem(this.key);
+			alert("That character has been irrevocably thrown into the void!")
+			window.location.reload();
+		}else{
+			alert("This character has been SPARED! For now...");
+		}
 	}
 	
 	function clearLocal(){
