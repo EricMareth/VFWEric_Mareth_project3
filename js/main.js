@@ -61,12 +61,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id","items");
-		var makeList =document.createElement('ul');
+		var makeList = document.createElement('ul');
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
 		$('items').style.display = "display";
 		for( i=0, length=localStorage.length; i<length; i++){
 			var makeLi = document.createElement('li');
+			var linksLi = document.createElement('li');
 			makeList.appendChild(makeLi);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -78,13 +79,74 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeSubList.appendChild(makeSubLi);
 				var optSubText = obj[n][0] + " " + obj[n][1];
 				makeSubLi.innerHTML = optSubText;
+				makeSubList.appendChild(linksLi);
 			}
 		}
+		makeItemLinks(localStorage.key(i), linksLi);
+	}
+	
+	// Creates edit and delete links
+	function makeItemLinks(key, linksLi){
+		var editLink = document.createElement('a');
+		editLink.href = "#";
+		editLink.key = key;
+		var	editText = "Edit Character";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linksLi.appendChild(editLink);
+		
+		var breakTag = document.createElement('br');
+		linksLi.appendChild(breakTag);
+		
+		var deleteLink = document.createElement('a');
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText ="Delete Character";
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linksLi.appendChild(deleteLink);
+	}
+	
+	function editItem(){
+		//Grabs data from item in local storage.
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		
+		//Shows the form.
+		toggleControls("off");
+		
+		//populates the form fields with current localStorage values.
+		$('charName').value  = item.name[1];
+		$('taleName').value  = item.story[1];
+		$('homeLand').value  = item.land[1];
+		var radios = document.forms[0].gender;
+		for(i=0; i<radios.length; i++){
+			if(radios[i].value == "Male" && item.gender[1] == "Male"){
+				radios[i].setAttribute("checked","checked");
+			}else if(radios[i].value == "Female" && item.gender[1] == "Female"){
+				radios[i].setAttribute("checked","checked");
+			}else if(radios[i].value == "Complicated" && item.gender[1] == "Female"){
+				radios[i].setAttribute("checked","checked");
+			}
+		}
+		$('age').value  = item.age[1];
+		$('type').value  = item.type[1];
+		$('details').value  = item.details[1];
+		$('created').value  = item.created[1];
+		
+		// remove the initial listener from the input 'save contact'
+		save.removeEventListener("click", storeData);
+		$('saveChar').value = "Edit Contact";
+		var editSubmit = $('saveChar');
+		// Save the key value established in this function as a property of the editSubmit event
+		//so we can use that value when we save the data we edited.
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = this.key;
 	}
 	
 	function clearLocal(){
 		if(localStorage.length === 0){
-			alert("There is no data to clear.")
+			alert("There is no data to clear.");
 		}else{
 			localStorage.clear();
 			alert("All characters have been destroyed!");
@@ -92,6 +154,44 @@ window.addEventListener("DOMContentLoaded", function(){
 			return false;
 		}
 	}
+	
+	function validate(e){
+		//Define the elements we want to check.
+		var getName = $('charName');
+		var getType = $('type');
+		
+		errMsg.innerHTML = "";
+		getName.style.border = "1px solid black";
+		getType.style.border = "1px solid black";
+		
+		var messageAry = [];
+		
+		if(getName.value === ""){
+			var nameError = "Please tell us your character name.";
+			getName.style.border = "1px solid red";
+			messageAry.push(nameError);	
+		}
+		
+		if(getType.value === "|-Choose Character Type-|"){
+			var typeError = "What type of character is this?";
+			getType.style.border = "1px solid red";
+			messageAry.push(typeError);	
+		}
+		
+		if(messageAry.length >= 1){
+			for(i=0, j=messageAry.length; i < j; i++){
+				var txt = document.createElement('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			}
+			 e.preventDefault();
+			return false;
+		}else{
+			storeData();
+		}
+	}
+	
+		
 	
 	function storeData(){
 		var id			= Math.floor(Math.random()*10000001);
@@ -112,7 +212,9 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	
-	var charType = ["Hero", "Side-kick", "Love Interest", "Mentor", "Villain", "Henchman", "Sub-Villain", "Supporting", "Walk-on", "Off-Screen", ]
+	var charType = ["|-Choose Character Type-|", "Hero", "Side-kick", "Love Interest", "Mentor", "Villain", "Henchman", "Sub-Villain", "Supporting", "Walk-on", "Off-Screen"];
+	var	errMsg  = $('errors');
+
 	whatType();
 
 	var displayData = $('displayData');
@@ -120,6 +222,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = $('clearLink');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('saveChar');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 	
 });

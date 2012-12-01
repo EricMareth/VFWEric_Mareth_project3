@@ -22,9 +22,11 @@
 	<!-- Fieldset and legend for Basic Character Information -->
 			<fieldset>
 				<legend>Basic Character Information</legend>
+				<span>* fields are required.</span>
+				<ul id="errors"></ul>
 				<ul>
 	<!-- Labels with for attribute and matching input id for character name, story the character is from, and the land the character lives in. -->
-					<li><label for="charName">Character Name: </label><input type="text" id="charName" /></li>
+					<li><label for="charName">* Character Name: </label><input type="text" id="charName" /></li>
 					<li><label for="taleName">For the Story: </label><input type="text" id="taleName" /></li>
 					<li><label for="homeLand">Lives In: </label><input type="text" id="homeLand" placeholder="Oz, Neverland, etc." /></li>
 					<li><label for="city" id="city">Kingdom? (disabled):</label><input type="text" id="city" disabled />		
@@ -45,7 +47,7 @@
 	<!-- Range slider to declare the character's age. -->
 					<li><label for="age">Age Character Looks: </label><input type="range" min="1" max="100" id="age" name="age"/></li>
 	<!-- Dynamic selection list for Character Type -->
-					<li id="selectType"><label for="type">Type of Character:</label></li>
+					<li id="selectType"><label for="type">* Type of Character:</label></li>
 	<!-- Text area for any general notes about the character not covered by input fields. -->
 					<li><label for="details">Other details about your character:</label><textarea id="details"></textarea></li>
 					<li>

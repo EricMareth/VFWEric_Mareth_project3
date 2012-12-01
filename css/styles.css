@@ -28,12 +28,26 @@ h2 {
 	margin: 0px 0px 50px 0px;
 }
 
+span {
+	font-style: italic;
+}
+
 p {
 	font-family: "Trebuchet MS" ;
 }
 
+ul{
+	background: white;
+}
+
+#errors{
+	color: red;
+}
+
 li {
 	font-family: "Trebuchet MS" ;
+	list-style: none;
+	margin: 0px 0px 0px -30px;
 }
 
 li #city {
