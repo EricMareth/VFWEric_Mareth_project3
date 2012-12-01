@@ -13,11 +13,14 @@ html {
 
 h1 {
 	font-family: Impact;
+	padding:10px 0px;
 	text-align: center;
 	letter-spacing: 2px;
 	color: #990000;
 	background: #fff;
-
+	border: hidden;
+	border-radius:20px;
+	box-shadow: 7px 7px 10px slateGrey;
 }
 
 h2 {
@@ -25,7 +28,7 @@ h2 {
 	letter-spacing: 2px;
 	text-align: center;
 	text-transform: capitalize;
-	margin: 0px 0px 50px 0px;
+	margin-bottom: 50px;
 }
 
 span {
@@ -34,30 +37,44 @@ span {
 
 p {
 	font-family: "Trebuchet MS" ;
-}
-
-ul{
-	background: white;
+	text-align: center;
 }
 
 #errors{
 	color: red;
+	font-style: italic;
+}
+
+#bioList{
+	list-style: none;
+	margin-left: -40px;
 }
 
 li {
 	font-family: "Trebuchet MS" ;
 	list-style: none;
-	margin: 0px 0px 0px -30px;
+	margin-left: -30px;
 }
 
-li #city {
-	text-decoration: line-through;
+#charAdjust{
+	padding-top:15px;
+}
+
+#bio{
+	border: 6px groove steelBlue;
+	padding: 10px;
+	border-radius: 10px;
+	margin: 10px 0px;
+	background: ghostWhite;
+}
+
+#city {
 	color: gray;
 }
 
 fieldset {
 	background: white;
-	margin: 0px 0px 25px 0px;
+	margin-bottom: 25px;
 	line-height: 28px;
 	box-shadow: 10px 10px 10px slateGrey;
 
@@ -84,21 +101,21 @@ textarea{
 }
 
 a{
-	margin:0px 20px 0px 20px;
+	margin:0px 10px 0px 10px;
 	color: #990000
 }
 
 #saveChar{
-	margin: 0px 0px 0px 5px;
+	margin-left: 5px;
 	width: 350px;
-	background:maroon;
+	background: maroon;
 	color: ghostWhite;
 	font: bold 18px "Trebuchet MS" ;
 }
 
 #addLink {
 	margin: 65px;
-	padding: 10px 18px 10px 18px;
+	padding: 10px 18px;
 	background: white;
 	border: 6px double midnightblue;
 	box-shadow: 5px 5px 10px slateGrey;

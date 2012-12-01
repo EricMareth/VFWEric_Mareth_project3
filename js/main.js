@@ -62,11 +62,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id","items");
 		var makeList = document.createElement('ul');
+		makeList.setAttribute("id","bioList");
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
 		$('items').style.display = "display";
 		for( i=0, length=localStorage.length; i<length; i++){
 			var makeLi = document.createElement('li');
+			makeLi.setAttribute("id","bio");					// Id created to attach CSS.
 			var linksLi = document.createElement('li');
 			makeList.appendChild(makeLi);
 			var key = localStorage.key(i);						// ORIGINAL KEY definition = randomly generated number.
@@ -95,8 +97,9 @@ window.addEventListener("DOMContentLoaded", function(){
 		editLink.innerHTML = editText;
 		linksLi.appendChild(editLink);
 		
-		var breakTag = document.createElement('br');
-		linksLi.appendChild(breakTag);
+		//var breakTag = document.createElement('br');			// Fashioned my tags with CSS.
+		//linksLi.appendChild(breakTag);
+		linksLi.setAttribute("id", "charAdjust");
 		
 		var deleteLink = document.createElement('a');
 		deleteLink.href = "#";
@@ -125,7 +128,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				radios[i].setAttribute("checked","checked");
 			}else if(radios[i].value == "Female" && item.gender[1] == "Female"){
 				radios[i].setAttribute("checked","checked");
-			}else if(radios[i].value == "Complicated" && item.gender[1] == "Female"){
+			}else if(radios[i].value == "It's Complicated" && item.gender[1] == "It's Complicated"){
 				radios[i].setAttribute("checked","checked");
 			}
 		}
@@ -136,7 +139,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		// remove the initial listener from the input 'save contact'
 		save.removeEventListener("click", storeData);
-		$('saveChar').value = "Edit Contact";
+		$('saveChar').value = "Edit Character";
 		var editSubmit = $('saveChar');
 		// Save the key value established in this function as a property of the editSubmit event
 		//so we can use that value when we save the data we edited.
