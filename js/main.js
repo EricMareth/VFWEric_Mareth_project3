@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var makeLi = document.createElement('li');
 			var linksLi = document.createElement('li');
 			makeList.appendChild(makeLi);
-			var key = localStorage.key(i);
+			var key = localStorage.key(i);						// ORIGINAL KEY definition = randomly generated number.
 			var value = localStorage.getItem(key);
 			var obj = JSON.parse(value);
 			var makeSubList = document.createElement('ul');
@@ -81,12 +81,12 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeSubLi.innerHTML = optSubText;
 				makeSubList.appendChild(linksLi);
 			}
+			makeItemLinks(localStorage.key(i), linksLi);		// passing key to makeItemLinks function.
 		}
-		makeItemLinks(localStorage.key(i), linksLi);
 	}
 	
 	// Creates edit and delete links
-	function makeItemLinks(key, linksLi){
+	function makeItemLinks(key, linksLi){						// KEY is passed from getData function.
 		var editLink = document.createElement('a');
 		editLink.href = "#";
 		editLink.key = key;
@@ -187,14 +187,18 @@ window.addEventListener("DOMContentLoaded", function(){
 			 e.preventDefault();
 			return false;
 		}else{
-			storeData();
+			storeData(this.key);
 		}
 	}
 	
 		
 	
-	function storeData(){
-		var id			= Math.floor(Math.random()*10000001);
+	function storeData(key){
+		if(!key){
+			var id			= Math.floor(Math.random()*10000001);
+		}else{
+			id = key;
+		};
 		getSelectedRadio();
 		var item		={};
 			item.name		=["Name:", $('charName').value];
