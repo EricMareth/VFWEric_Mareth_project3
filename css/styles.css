@@ -35,6 +35,23 @@ span {
 	font-style: italic;
 }
 
+#charAge{
+	color: SteelBlue;
+	/*padding: 5px;
+	border: 2px solid black;
+	min-width: 200px;
+	border-radius: 3px;*/
+}
+
+[type = "range"]{
+	 margin-top: 10px;
+	 width: 200px;
+}
+
+[type = "radio"]{
+	 width: 30px;
+}
+
 p {
 	font-family: "Trebuchet MS" ;
 	text-align: center;
@@ -91,7 +108,7 @@ legend {
 	color: #990000;
 }
 
-#detailField label {
+#charDet label{
 	display: block;
 }
 

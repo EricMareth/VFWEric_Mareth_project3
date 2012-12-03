@@ -162,10 +162,15 @@ window.addEventListener("DOMContentLoaded", function(){
 		if(localStorage.length === 0){
 			alert("There is no data to clear.");
 		}else{
-			localStorage.clear();
-			alert("All characters have been destroyed!");
-			window.location.reload();
-			return false;
+			var ask = confirm("Are you positive that you want to wipe out your collection?")
+			if(ask){
+				localStorage.clear();
+				alert("All characters have been destroyed!");
+				window.location.reload();
+				return false;
+			}else{
+				alert("That was a close one!")
+			}
 		}
 	}
 	
@@ -217,7 +222,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var item		={};
 			item.name		=["Name:", $('charName').value];
 			item.story		=["Story:", $('taleName').value];
-			item.land		=["Land:", $('homeLand').value];
+			item.land		=["Town:", $('homeLand').value];
 			item.gender		=["Sex:", genderVal];
 			item.age		=["Age:", $('age').value];
 			item.type		=["Character Type:", $('type').value];
@@ -225,11 +230,11 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.created	=["Birthdate:", $('created').value];
 		
 		localStorage.setItem(id, JSON.stringify(item));
-		alert("Your character has been remembered!");
+		alert("It's ALIVE!!!!!!!! ALIIIIVE!!!!!");
 		
 	}
 	
-	function ageNum(){ 
+	function ageNum(){ 										// Challenge to add a range display.
 		var	ageVal = ageData.value,
 			field = $('charAge');
 		field.innerHTML = "";
@@ -249,7 +254,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	var save = $('saveChar');
 	save.addEventListener("click", validate);
 	
-	var ageData = $('age');
+	var ageData = $('age');									// Challenge to add a range display.
 	ageNum();
 	ageData.addEventListener("change", ageNum);	
 });
