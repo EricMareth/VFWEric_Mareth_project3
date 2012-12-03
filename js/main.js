@@ -181,13 +181,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		var messageAry = [];
 		
 		if(getName.value === ""){
-			var nameError = "Please tell us your character name.";
+			var nameError = "Please give your character a name.";
 			getName.style.border = "1px solid red";
 			messageAry.push(nameError);	
 		}
 		
 		if(getType.value === "|-Choose Character Type-|"){
-			var typeError = "What type of character is this?";
+			var typeError = "Please select a character type.";
 			getType.style.border = "1px solid red";
 			messageAry.push(typeError);	
 		}
@@ -229,6 +229,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 	}
 	
+	function ageNum(){ 
+		var	ageVal = ageData.value,
+			field = $('charAge');
+		field.innerHTML = "";
+		field.innerHTML = ageVal;
+	}
+	
 	
 	var charType = ["|-Choose Character Type-|", "Hero", "Side-kick", "Love Interest", "Mentor", "Villain", "Henchman", "Sub-Villain", "Supporting", "Walk-on", "Off-Screen"];
 	var	errMsg  = $('errors');
@@ -242,4 +249,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	var save = $('saveChar');
 	save.addEventListener("click", validate);
 	
+	var ageData = $('age');
+	ageNum();
+	ageData.addEventListener("change", ageNum);	
 });

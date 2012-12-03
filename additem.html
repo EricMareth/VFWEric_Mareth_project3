@@ -45,7 +45,7 @@
 				<legend>Character Details</legend>
 				<ul>
 	<!-- Range slider to declare the character's age. -->
-					<li><label for="age">Age Character Looks: </label><input type="range" min="1" max="100" id="age" name="age"/></li>
+					<li><label for="age">Age Character Looks: <span id="charAge"></span></label><input type="range" min="1" max="100" id="age" name="age"/></li>
 	<!-- Dynamic selection list for Character Type -->
 					<li id="selectType"><label for="type">Type of Character *:</label></li>
 	<!-- Text area for any general notes about the character not covered by input fields. -->
@@ -64,9 +64,11 @@
 		</form>
 	<!-- Form end  -->
 	<!-- Anchor tags to access the "Clear Stored Data" and "Display Data" actions.-->
-		<p>	<a href="#" id="clearLink">Clear Stored Data</a>
+		<p>
+			<a href="#" id="clearLink">Clear Stored Data</a>
 			<a href="#" id="displayData">Display Data</a>
-			<a href="additem.html" id="addChar" style="display:none">Create New Character</a></p>	
+			<a href="additem.html" id="addChar" style="display:none">Create New Character</a>
+		</p>	
 		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 </html>
